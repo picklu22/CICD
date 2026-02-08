@@ -11,20 +11,26 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # ----- DEBUG STEP (Correct Place) -----
-      - name: HARD DEBUG
-        run: |
-          echo "===== CURRENT DIRECTORY ====="
-          pwd
-
-          echo "===== FILE LIST ====="
-          ls -R
-      # -------------------------------------
-
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
+
+      # ===== INVESTIGATION STEP =====
+      - name: INVESTIGATION
+        run: |
+          echo "---- PWD ----"
+          pwd
+
+          echo "---- LS ----"
+          ls
+
+          echo "---- LS WITH DETAILS ----"
+          ls -la
+
+          echo "---- FIND PY FILES ----"
+          find . -name "*.py"
+      # ==============================
 
       - name: Install Dependencies
         run: |
@@ -32,7 +38,7 @@ jobs:
 
       - name: Run Validation
         run: |
-          python Validation.py
+          python python.py
 
       - name: Upload Report
         if: failure()
