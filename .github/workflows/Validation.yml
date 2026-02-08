@@ -1,5 +1,7 @@
 name: Snowflake Table Validation
-on: workflow_dispatch
+
+on:
+  workflow_dispatch:
 
 jobs:
   validate:
@@ -8,6 +10,16 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+
+      # ----- DEBUG STEP (Correct Place) -----
+      - name: HARD DEBUG
+        run: |
+          echo "===== CURRENT DIRECTORY ====="
+          pwd
+
+          echo "===== FILE LIST ====="
+          ls -R
+      # -------------------------------------
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -19,14 +31,6 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run Validation
-        env:
-          SF_USER: ${{ secrets.SF_USER }}
-          SF_PASSWORD: ${{ secrets.SF_PASSWORD }}
-          SF_ACCOUNT: ${{ secrets.SF_ACCOUNT }}
-          SF_WAREHOUSE: ${{ secrets.SF_WAREHOUSE }}
-          SF_DATABASE: ${{ secrets.SF_DATABASE }}
-          SF_SCHEMA: ${{ secrets.SF_SCHEMA }}
-
         run: |
           python python.py
 
