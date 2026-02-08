@@ -28,7 +28,7 @@ jobs:
           SF_SCHEMA: ${{ secrets.SF_SCHEMA }}
 
         run: |
-          python Python.py
+          python python.py
 
       - name: Upload Report
         if: failure()
