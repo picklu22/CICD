@@ -32,7 +32,7 @@ jobs:
 
       - name: Run Validation
         run: |
-          python python.py
+          python Validation.py
 
       - name: Upload Report
         if: failure()
