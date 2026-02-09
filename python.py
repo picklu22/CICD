@@ -53,11 +53,11 @@ def validate(source, target):
 
     if len(mismatch) == 0:
         print("✅ Data Matched Successfully")
-        return 0
+        return 1
     else:
         print("❌ Data Mismatch Found")
         mismatch.to_csv("mismatch_report.csv", index=False)
-        return 1
+        return 0
 
 
 # ===== Main =====
