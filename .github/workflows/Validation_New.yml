@@ -35,8 +35,7 @@ jobs:
           python Validation.py
 
       - name: Upload Report
-        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: mismatch-report
-          path: mismatch_report.csv
+          path: ./*
